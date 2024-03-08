@@ -1,15 +1,15 @@
-def call(Boolean valor, String branch) {
-    if (valor == true){
-        echo "Failing the pipeline due to boolean value: ${valor}"
+def call(Map config = [:]) {
+    if ("${config.valor}" == true){
+        echo "Failing the pipeline due to boolean value: ${config.valor}"
         currentBuild.result = 'FAILURE'
         error("Quality Gate failed. Pipeline stopped.")
-    } else if ("${branch}" == 'master' || "${branch}".startsWith('hotfix')) {
-        echo "Failing the pipeline due to branch name: ${branch}"
+    } else if ("${config.branch}" == 'master' || "${config.branch}".startsWith('hotfix')) {
+        echo "Failing the pipeline due to branch name: ${config.branch}"
         currentBuild.result = 'FAILURE'
         error("Quality Gate failed. Pipeline stopped.")
     }
      else {
-        echo "Not failing the pipeline for branch: ${branch}"
+        echo "Not failing the pipeline for branch: ${config.branch}"
     }  
 }
 
