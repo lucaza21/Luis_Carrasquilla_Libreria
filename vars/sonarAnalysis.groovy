@@ -1,4 +1,7 @@
-def call(String name, String day) {
-    sh 'echo "Ejecución de las pruebas de calidad de código"'
-    sh "echo Hola ${name}. Hoy es  ${day}"
+def call(Boolean valor) {
+    timeout(time:5, unit:'MINUTES'){
+        sh 'echo Iniciando las quality gates'
+        sh "sleep 10"
+        waitForQualityGate abortPipeline:${valor}
+    }
 }
