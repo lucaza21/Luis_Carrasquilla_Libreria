@@ -1,5 +1,5 @@
 def call(String branchesToAnalyze) {
-    sh " echo ${branchesToAnalyze} "
+    sh " echo ejecutando la rama: ${branchesToAnalyze} "
     if ("${branchesToAnalyze}" == 'master' || "${branchesToAnalyze}".startsWith('hotfix')) {
         echo "Failing the pipeline due to branch name: ${branchesToAnalyze}"
         currentBuild.result = 'FAILURE'
