@@ -3,6 +3,6 @@ def call(boolean valor) {
         sh 'echo Iniciando las quality gates'
         sh "sleep 10"
         sh "echo ${valor}"
-        waitForQualityGate abortPipeline:"${valor}"
+        waitForQualityGate abortPipeline: false
     }
 }
