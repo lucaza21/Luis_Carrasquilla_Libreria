@@ -1,11 +1,11 @@
 def call(String branchesToAnalyze) {
     sh " echo ${branchesToAnalyze} "
     if ("${branchesToAnalyze}" == 'master' || "${branchesToAnalyze}".startsWith('hotfix')) {
-        echo "Failing the pipeline due to branch name: $gitBranch"
+        echo "Failing the pipeline due to branch name: ${branchesToAnalyze}"
         currentBuild.result = 'FAILURE'
         error("Quality Gate failed. Pipeline stopped.")
     } else {
-        echo "Not failing the pipeline for branch: $gitBranch"
+        echo "Not failing the pipeline for branch: ${branchesToAnalyze}"
     }  
 }
 
