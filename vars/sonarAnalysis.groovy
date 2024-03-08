@@ -1,8 +1,11 @@
 def call(boolean valor) {
+    SonarEnv('Sonarqube'){
+            sh 'echo Ejecucion de las pruebas de calidad de codigo'
+        }
     timeout(time:5, unit:'MINUTES'){
         sh 'echo Iniciando las quality gates'
-        sh "sleep 10"
+        sh "sleep 3"
         sh "echo ${valor}"
-        waitForQualityGate abortPipeline: false
+        waitForQualityGate abortPipeline: "${valor}"
     }
 }
