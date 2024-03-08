@@ -1,4 +1,4 @@
-def call(List<String> branchesToAnalyze = ['master']) {
+def call(List<String> branchesToAnalyze = ['hotfix]) {
     def shouldFailAlways = System.getenv("FAIL_ALWAYS") ?: false
 
     def shouldFailBasedOnBranch = !shouldFailAlways
