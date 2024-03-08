@@ -1,5 +1,5 @@
 def call(boolean valor) {
-    SonarEnv('Sonarqube'){
+    def SonarEnv(){
             sh 'echo Ejecucion de las pruebas de calidad de codigo'
         }
     timeout(time:5, unit:'MINUTES'){
