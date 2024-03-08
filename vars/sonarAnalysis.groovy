@@ -1,17 +1,20 @@
 def call(Map config = [:]) {
     echo "${config.valor}"
     echo "${config.branch}"
-    if ("${config.valor}" == true && "${config.branch}" == null){
+    if ("${config.valor}" == true){
         echo "Failing the pipeline due to boolean value: ${config.valor}"
         currentBuild.result = 'FAILURE'
         error("Quality Gate failed. Pipeline stopped.")
-    } else if ("${config.branch}" == 'master' || "${config.branch}".startsWith('hotfix')) {
+    } else if("${config.valor}" == false){
+        if ("${config.branch}" == 'master' || "${config.branch}".startsWith('hotfix')) {
         echo "Failing the pipeline due to branch name: ${config.branch}"
         currentBuild.result = 'FAILURE'
         error("Quality Gate failed. Pipeline stopped.")
-    }
-     else {
+        }
+        else {
         echo "Not failing the pipeline for branch: ${config.branch}"
-    }  
+        } 
+    }
+      
 }
 
